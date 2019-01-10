@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from sympy import *
-from colorama import *
+#from colorama import *
 print("hi")
 class Linear_Utility(object):
-    print(Fore.BLUE + "Welcome to the Linear Utility Model")  # changes color of display text
+    print("Welcome to the Linear Utility Model")  # changes color of display text
     print("created by Alex Payne")
     print("-"*40)
 
@@ -26,7 +26,7 @@ class Linear_Utility(object):
             restart_b = False  # will restart when = True (alarm set)
             for intercept in range(self.num_b):  # asks for each intercept value
                 try:
-                    b = float(input("Enter Intercept " + str(intercept + 1) + ": "))
+                    b = float(input("Enter Intercept for function #" + str(intercept + 1) + ": "))
                     b_i.append(b)
                 except ValueError:  # value error when letter is entered
                     print("Intercepts must be rational numbers")
@@ -40,7 +40,7 @@ class Linear_Utility(object):
             restart_m = False  # restart when = True (alarm set)
             for slope in range(self.num_m):  # asks for each slope value
                 try:
-                    m = float(input("Enter Slope " + str(slope + 1) + ": "))
+                    m = float(input("Enter Slope for function #" + str(slope + 1) + ": "))
                     m_i.append(m)
                 except ValueError:
                     print("Slopes must be rational numbers")
@@ -54,7 +54,7 @@ class Linear_Utility(object):
             restart_c = False  # restart when = True (alarm set)
             for constraint in range(self.num_c):  # asks for each c1, c2, etc.
                 try:
-                    c = float(input("Enter C" + str(constraint + 1) + ": "))
+                    c = float(input("Enter Constraint " + str(constraint + 1) + ": "))
                     c_i.append(c)
                 except ValueError:
                     print("Constraints must be rational numbers")
@@ -76,7 +76,7 @@ class Linear_Utility(object):
                     print(c_i)
                     break  # breaks until C1 < C2, only continues while-loop not for-loop
         print("\n")
-        print(Fore.GREEN + "Our function is")  # changes color of display text
+        print("Our function is")  # changes color of display text
         print("-"*20)  # so user sees function
         print("U(x) =")
         print(str(b_i[0]) + "+" + str(m_i[0]) + "x")
@@ -94,9 +94,9 @@ class Linear_Utility(object):
                  lambda x: float(self.b_i[2]) + float(self.m_i[2]) * x]  # creates piecewise functions
         return np.piecewise(x, params, funcs)  # numpy extension that returns U(x)
 
-    def continuity(self):
+    def continuity(self):  # check continuity of functions
         # TODO make y*_c* iterable through lambda functions
-        print(Fore.MAGENTA + "Let's check the continuity")  # changes color of display text
+        print("Let's check the continuity")  # changes color of display text
         print("-"*40)
         y1_c1 = float(self.b_i[0]) + float(self.m_i[0]) * float(self.c_i[0])  # checks 1st function values at c1
         y2_c1 = float(self.b_i[1]) + float(self.m_i[1]) * float(self.c_i[0])  # checks 2nd function values at c1
@@ -188,7 +188,7 @@ class Linear_Utility(object):
 # number of b intercepts, number of m slopes, number of c constraints, number of items
 # model currently only set up to only take 3 intercepts, 3 slopes, and 2 constraints
 # user can enter as many items as desired
-test = Linear_Utility(3, 3, 2, 50)
+test = Linear_Utility(3, 3, 2, 5)
 test.continuity()  # checks continuity
 test.concavity()  # checks concavity
 test.plot()  # plots U(x)
